@@ -2,14 +2,16 @@ package main
 
 import "fmt"
 
+func squares(c chan int) {
+	for i := 0; i <= 9; i++ {
+		c <- i * i
+	}
+
+	close(c)
+}
+
 func Unbuffered() {
-	//fmt.Printf("type of the channel and value of the channel is: %T , %v", c, c)
 	fmt.Println("Unbuffered started")
-	//c := make(chan string)
-
-	//go greet(c)
-
-	//c <- "Rashmi"
 
 	c := make(chan int)
 	go squares(c)
